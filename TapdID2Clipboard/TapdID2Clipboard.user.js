@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         TapdID2Clipboard
-// @version      0.1
+// @version      0.2
 // @description  快速复制粘贴Tapd的ID至剪切板
 // @author       shykai
 // @match        *://www.tapd.cn/*
@@ -98,26 +98,18 @@
         return "";
     }
 
+    function doIcos(tr, icoDesc){
+        var icos = tr.querySelectorAll(icoDesc);
+        icos.forEach(function(ico){
+            addClipIco(ico, "ID"+queryId(tr));
+        })
+    }
+    
     function addIcoClickToCopyID(tr) {
-        var bugIco = tr.querySelectorAll(".ico-bug");
-        bugIco.forEach(function(ico){
-            addClipIco(ico, queryId(tr));
-        })
-
-        var storyIco = tr.querySelectorAll(".ico-story-child");
-        storyIco.forEach(function(ico){
-            addClipIco(ico, queryId(tr));
-        })
-
-        var taskIco = tr.querySelectorAll(".ico-task");
-        taskIco.forEach(function(ico){
-            addClipIco(ico, queryId(tr));
-        })
-
-        var taskTagIco = tr.querySelectorAll(".tag_task");
-        taskTagIco.forEach(function(ico){
-            addClipIco(ico, queryId(tr));
-        })
+        doIcos(tr, ".ico-bug");
+        doIcos(tr, ".ico-story-child");
+        doIcos(tr, ".ico-task");
+        doIcos(tr, ".tag_task");
     }
 
     function doObserverAsyncTab(tab) {
