@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         TapdID2Clipboard
-// @version      0.2
+// @version      0.3
 // @description  快速复制粘贴Tapd的ID至剪切板
 // @author       shykai
 // @match        *://www.tapd.cn/*
-// @grant        none
+// @grant        GM_setClipboard
 // ==/UserScript==
 
 (function() {
@@ -27,16 +27,13 @@
     };
     function addClipIco(ico, value) {
         var containerEle = document.createElement("span");
-        var inputEle = document.createElement("input");
-        inputEle.style.width = "1px";
-        inputEle.style.opacity = 0;
-        inputEle.style.border = "none";
-        inputEle.value = value;
+        containerEle.setAttribute("title", value);
 
         var svg = document.createElementNS(
             "http://www.w3.org/2000/svg",
             "svg"
         );
+
         var path = document.createElementNS(
             "http://www.w3.org/2000/svg",
             "path"
@@ -64,16 +61,11 @@
 
         svg.addEventListener("click", function (e) {
             e.stopPropagation();
-            inputEle.select();
-            var copyResult = document.execCommand("copy");
+            GM_setClipboard(value);
             path.setAttribute("fill", STATUS_COLOR_MAP.SUCCESS);
-            //             if (!copyResult) {
-            //                 copyResult = window.clipboardData.setData("text", value);
-            //             }
         });
 
         containerEle.appendChild(svg);
-        containerEle.appendChild(inputEle);
 
         insertAfter(containerEle, ico);
     }
