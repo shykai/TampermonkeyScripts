@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         PLM日报自动填写日志和类型
+// @name         PLM日报自动填写时间和类型
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
