@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         TapdID2Clipboard
-// @version      0.3
+// @version      0.4
 // @description  快速复制粘贴Tapd的ID至剪切板
 // @author       shykai
 // @match        *://www.tapd.cn/*
@@ -102,6 +102,7 @@
         doIcos(tr, ".ico-story-child");
         doIcos(tr, ".ico-task");
         doIcos(tr, ".tag_task");
+        doIcos(tr, ".workitem-icon");
     }
 
     function doObserverAsyncTab(tab) {
